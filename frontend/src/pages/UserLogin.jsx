@@ -8,11 +8,12 @@ const UserLogin = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    setUserData({
+    const userData=({
       email: email,
       password: password,
     });
-   
+    console.log(userData);
+    
     setEmail("");
     setPassword("");
   };
@@ -66,7 +67,10 @@ const UserLogin = () => {
           </form>
         </div>
         <div>
-          <Link to="/captain-login" className="bg-[#10b461] flex items-center justify-center text-white font-semibold mb-5 rounded px-4 py-2  w-full text-lg placeholder:text-base ">
+          <Link
+            to="/captain-login"
+            className="bg-[#10b461] flex items-center justify-center text-white font-semibold mb-5 rounded px-4 py-2  w-full text-lg placeholder:text-base "
+          >
             Sign in as Captain
           </Link>
         </div>
