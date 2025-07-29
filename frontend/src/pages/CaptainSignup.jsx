@@ -1,13 +1,39 @@
-import React,{useState} from "react";
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const CaptainSignup = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userData, setUserData] = useState({});
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setUserData({
+      fullName: {
+        firstName: firstName,
+        lastName: lastName,
+      },
+      email: email,
+      password: password,
+    });
+
+
+    setEmail("");
+    setFirstName("");
+    setLastName("");
+    setPassword("");
+  };
   return (
     <>
       <div>
-        <div className="p-7 h-screen flex flex-col justify-between ">
+        <div className="py-5 px-5 h-screen flex flex-col justify-between ">
           <div>
-            <img className="w-16 mb-10" src={UberImg} alt="" />
+            <img
+              className="w-16 mb-10"
+              src="https://www.svgrepo.com/show/505031/uber-driver.svg"
+              alt=""
+            />
 
             <form
               onSubmit={(e) => {
@@ -15,13 +41,13 @@ const CaptainSignup = () => {
               }}
               className="text-lg font-medium mb-2"
             >
-              <h3 className="text-lg font-medium mb-2">What's your name</h3>
+              <h3 className="text-lg font-medium w-full mb-2">What's our Captain's name</h3>
 
               <div className="flex gap-4 mb-5 ">
                 <input
                   className="bg-[#eeeeee]  rounded px-4 py-2 border w-1/2 text-base placeholder:text-sm "
                   type="text"
-                  value={firstname}
+                  value={firstName}
                   onChange={(e) => {
                     setFirstName(e.target.value);
                   }}
@@ -32,16 +58,16 @@ const CaptainSignup = () => {
                 <input
                   className="bg-[#eeeeee]  rounded px-4 py-2 border w-1/2  text-base placeholder:text-sm "
                   type="text"
-                  value={lastname}
+                  value={lastName}
                   onChange={(e) => {
-                    setLastname(e.target.value);
+                    setLastName(e.target.value);
                   }}
                   required
                   placeholder="lastname"
                 />
               </div>
 
-              <h3 className="text-base font-medium mb-2">What's your email</h3>
+              <h3 className="text-lg font-medium mb-2">What's our Captain's email</h3>
 
               <input
                 className="bg-[#eeeeee] mb-5 rounded px-4 py-2 border w-full text-lg placeholder:text-sm "
@@ -54,7 +80,7 @@ const CaptainSignup = () => {
                 placeholder="Email@example.com"
               />
 
-              <h3 className="text-base font-medium mb-2">Enter password</h3>
+              <h3 className="text-lg font-medium mb-2">Enter password</h3>
 
               <input
                 placeholder="password"
@@ -70,7 +96,7 @@ const CaptainSignup = () => {
 
               <p className="text-center">
                 Akready have a account?{" "}
-                <Link to="/login" className="text-blue-600">
+                <Link to="/captain-login" className="text-blue-600">
                   Login here
                 </Link>
               </p>
@@ -78,9 +104,9 @@ const CaptainSignup = () => {
           </div>
           <div>
             <p className="text-[6px] leading-tight">
-              By proceeding, you consent to get calls, WhatsApp or SMS/RCS
-              messages, including by automated means, from Uber and its
-              affiliates to the number provided.
+              This site is protected by reCAPTCHA and the{" "}
+              <span className="underline"> Google Privacy Policy</span>
+              and <span className="underline">Terms of Service apply</span>
             </p>
           </div>
         </div>

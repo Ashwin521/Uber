@@ -54,7 +54,7 @@ const UserLogin = () => {
               placeholder="password"
               className="bg-[#eeeeee] mb-7 rounded px-4 py-2 border w-full text-lg placeholder:text-base "
             />
-            <button className="bg-[#111] text-white font-semibold mb-3 rounded px-4 py-2  w-full text-lg placeholder:text-base ">
+            <button onClick={submitHandler} className="bg-[#111] text-white font-semibold mb-3 rounded px-4 py-2  w-full text-lg placeholder:text-base ">
               Login
             </button>
 

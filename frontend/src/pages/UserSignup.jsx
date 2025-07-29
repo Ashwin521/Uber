@@ -5,24 +5,25 @@ import UberImg from "../assets/Uber-Logo.wine.png";
 const UserSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastname] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [userData, setUserData] = useState({});
   const submitHandler = (e) => {
     e.preventDefault();
     setUserData({
-      username: {
-        firstname: firstname,
-        lastname: lastname,
+      fullName: {
+        firstName: firstName,
+        lastName: lastName,
       },
       email: email,
       password: password,
     });
+
     console.log(userData);
 
     setEmail("");
     setFirstName("");
-    setLastname("");
+    setLastName("");
     setPassword("");
   };
 
@@ -45,7 +46,7 @@ const UserSignup = () => {
                 <input
                   className="bg-[#eeeeee]  rounded px-4 py-2 border w-1/2 text-base placeholder:text-sm "
                   type="text"
-                  value={firstname}
+                  value={firstName}
                   onChange={(e) => {
                     setFirstName(e.target.value);
                   }}
@@ -56,9 +57,9 @@ const UserSignup = () => {
                 <input
                   className="bg-[#eeeeee]  rounded px-4 py-2 border w-1/2  text-base placeholder:text-sm "
                   type="text"
-                  value={lastname}
+                  value={lastName}
                   onChange={(e) => {
-                    setLastname(e.target.value);
+                    setLastName(e.target.value);
                   }}
                   required
                   placeholder="lastname"
@@ -102,9 +103,9 @@ const UserSignup = () => {
           </div>
           <div>
             <p className="text-[6px] leading-tight">
-              By proceeding, you consent to get calls, WhatsApp or SMS/RCS
-              messages, including by automated means, from Uber and its
-              affiliates to the number provided.
+              This site is protected by reCAPTCHA and the{" "}
+              <span className="underline"> Google Privacy Policy</span> and
+              <span className="underline"> Terms of Service apply</span>
             </p>
           </div>
         </div>
