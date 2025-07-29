@@ -1,19 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import UberImg from "../assets/Uber-Logo.wine.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserDataContext } from "../context/UserContext";
+import axios from "axios";
+
 const UserLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userData, setUserData] = useState({});
 
-  const submitHandler = (e) => {
+  const { user, setUser } = useContext(UserDataContext);
+  const navigate = useNavigate();
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    const userData=({
+
+    const userData = {
       email: email,
       password: password,
-    });
-    console.log(userData);
-    
+    };
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/users/login`,
+      userData
+    );
+    if(response.status === 200){
+      const data = response.data
+      setUser(data.user)
+      localStorage.setItem("token",data.token)
+      navigate("/home")
+    }
     setEmail("");
     setPassword("");
   };
@@ -54,7 +69,10 @@ const UserLogin = () => {
               placeholder="password"
               className="bg-[#eeeeee] mb-7 rounded px-4 py-2 border w-full text-lg placeholder:text-base "
             />
-            <button onClick={submitHandler} className="bg-[#111] text-white font-semibold mb-3 rounded px-4 py-2  w-full text-lg placeholder:text-base ">
+            <button
+              onClick={submitHandler}
+              className="bg-[#111] text-white font-semibold mb-3 rounded px-4 py-2  w-full text-lg placeholder:text-base "
+            >
               Login
             </button>
 

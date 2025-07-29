@@ -1,22 +1,43 @@
 import React, { useContext } from "react";
-import Home from "../src/pages/Home";
+import Start from "../src/pages/Start";
 import UserLogin from "../src/pages/UserLogin";
 import UserSignup from "../src/pages/UserSignup";
 import CaptainLogin from "../src/pages/CaptainLogin";
 import CaptainSignup from "../src/pages/CaptainSignup";
+import CaptainHome from "../src/pages/CaptainHome";
+
+import UserLogout from "../src/pages/UserLogout";
+import Home from "../src/pages/Home";
+import UserProtectWrapper from "../src/pages/UserProtectWrapper";
 import { UserDataContext } from "./context/UserContext";
 import { Route, Routes } from "react-router-dom";
 const App = () => {
-  
-
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Start />} />
         <Route path="/login" element={<UserLogin />} />
         <Route path="/signup" element={<UserSignup />} />
         <Route path="/captain-login" element={<CaptainLogin />} />
         <Route path="/captain-signup" element={<CaptainSignup />} />
+        <Route
+          path="/home"
+          element={
+            <UserProtectWrapper>
+              {" "}
+              <Home />
+            </UserProtectWrapper>
+          }
+        />
+        <Route path="/captain-home" element={<CaptainHome/>} />
+        <Route
+          path="/user/logout"
+          element={
+            <UserProtectWrapper>
+              <UserLogout />
+            </UserProtectWrapper>
+          }
+        />
       </Routes>
     </>
   );
