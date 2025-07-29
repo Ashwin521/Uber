@@ -17,7 +17,7 @@ const UserLogout = () => {
       }
 
       try {
-        await axios.get(`${import.meta.env.VITE_BASE_URL}/users/logout`, {
+        await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/users/logout`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

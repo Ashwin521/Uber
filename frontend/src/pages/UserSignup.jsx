@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import UberImg from "../assets/Uber-Logo.wine.png";
-import {UserDataContext} from "../context/UserContext";
+import { UserDataContext } from "../context/UserContext";
 import axios from "axios";
 
 const UserSignup = () => {
@@ -25,13 +25,13 @@ const UserSignup = () => {
     };
 
     const response = await axios.post(
-      `${import.meta.env.VITE_BASE_URL}/users/register`,
+      `${import.meta.env.VITE_APP_BASE_URL}/users/register`,
       newUser
     );
     if (response.status === 201) {
       const data = response.data;
       setUser(data.user);
-      localStorage.setItem("token",data.token)
+      localStorage.setItem("token", data.token);
       navigate("/home");
     }
     setEmail("");
