@@ -5,7 +5,7 @@ import UserSignup from "../src/pages/UserSignup";
 import CaptainLogin from "../src/pages/CaptainLogin";
 import CaptainSignup from "../src/pages/CaptainSignup";
 import CaptainHome from "../src/pages/CaptainHome";
-
+import CaptainProtectWrapper from "../src/pages/CaptainProtectWrapper"
 import UserLogout from "../src/pages/UserLogout";
 import Home from "../src/pages/Home";
 import UserProtectWrapper from "../src/pages/UserProtectWrapper";
@@ -29,7 +29,15 @@ const App = () => {
             </UserProtectWrapper>
           }
         />
-        <Route path="/captain-home" element={<CaptainHome/>} />
+        <Route
+          path="/captain-home"
+          element={
+            <CaptainProtectWrapper>
+              {" "}
+              <CaptainHome />{" "}
+            </CaptainProtectWrapper>
+          }
+        />
         <Route
           path="/user/logout"
           element={

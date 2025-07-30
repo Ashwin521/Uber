@@ -40,10 +40,12 @@ const CaptainSignup = () => {
       captainData
     );
 
-    if (response.status === 201) {
+    if (response.status === 200) {
       const data = response.data;
       setCaptain(data.captain);
       localStorage.setItem("token", data.token);
+      console.log("SignUp", response);
+
       navigate("/captain-home");
     }
 
