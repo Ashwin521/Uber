@@ -5,6 +5,7 @@ import "remixicon/fonts/remixicon.css";
 import UberImg from "../assets/Uber-Logo.wine.png";
 import ConfirmRide from "../components/ConfirmRide";
 import LookingForDriver from "../components/LookingForDriver";
+import WaitingForDriver from "../components/WaitingForDriver";
 import VehiclePanel from "../components/VehiclePanel";
 import LocationSearchPanel from "../components/LocationSearchPanel";
 const Home = () => {
@@ -17,10 +18,12 @@ const Home = () => {
 
   const confirmRidePanelRef = useRef(null);
   const vehiclePanelRef = useRef(null);
+  const waitingForDriverRef = useRef(null);
 
   const panelCloseRef = useRef(null);
   const [vehiclePanel, setVehiclePanel] = useState(false);
   const [vehicleFound, setVehicleFound] = useState(false);
+  const [waitingForDriver, setWaitingForDriver] = useState(false);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -93,6 +96,21 @@ const Home = () => {
       }
     },
     [vehicleFound]
+  );
+
+  useGSAP(
+    function () {
+      if (waitingForDriver) {
+        gsap.to(waitingForDriverRef.current, {
+          transform: "translateY(0)",
+        });
+      } else {
+        gsap.to(waitingForDriverRef.current, {
+          transform: "translateY(100%)",
+        });
+      }
+    },
+    [waitingForDriver]
   );
 
   return (
@@ -176,13 +194,19 @@ const Home = () => {
       >
         <ConfirmRide
           setConfirmRidePanel={setConfirmRidePanel}
-          setVehiclePanel={setVehiclePanel}
+          setVehicleFound={setVehicleFound}
         />
       </div>
 
-      <div ref={vehicleFoundRef}
-       className="fixed z-10 bg-white bottom-0 px-10 pt-12 w-full py-8 translate-y-full">
-        <LookingForDriver />
+      <div
+        ref={vehicleFoundRef}
+        className="fixed z-10 bg-white bottom-0 px-10 pt-12 w-full py-8 translate-y-full"
+      >
+        <LookingForDriver setVehicleFound={setVehicleFound} />
+      </div>
+
+      <div ref={waitingForDriverRef} className="fixed z-10 bg-white bottom-0 px-10 pt-12 w-full py-8 ">
+        <WaitingForDriver  waitingForDriver={waitingForDriver} />
       </div>
     </div>
   );
